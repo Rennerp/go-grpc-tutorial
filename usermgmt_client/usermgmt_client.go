@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -42,4 +43,14 @@ NAME: %s
 AGE: %d
 ID: %d`, response.GetName(), response.GetAge(), response.GetId())
 	}
+
+	params := &pb.GetUsersParams{}
+	response, err := c.GetUsers(ctx, params)
+
+	if err != nil {
+		log.Fatalf("Could not retrieve users: %v", err)
+	}
+
+	log.Print("\nUSER LIST: \n")
+	fmt.Printf("r.getUsers(): %v \n", response.GetUsers())
 }
